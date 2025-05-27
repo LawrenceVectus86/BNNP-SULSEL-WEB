@@ -199,7 +199,7 @@
                     <div class="card border-0 shadow">
                         <div class="card-body p-5">
                             <h2 class="text-center mb-4">Daftar Konsultasi Online</h2>
-                            <form>
+                            <form method="POST" action="https://script.google.com/macros/s/AKfycbw1KqIQZEZ0hU-PYl6wjpC0496goeY6TmDd5XVYsnaoUyn-O6ECPbdJmFrTwMtBcGnC/exec">
                                 <div class="mb-3">
                                     <label for="nama" class="form-label">Nama Lengkap</label>
                                     <input type="text" class="form-control" id="nama" required>
@@ -216,9 +216,9 @@
                                     <label for="jenis" class="form-label">Jenis Konseling</label>
                                     <select class="form-select" id="jenis" required>
                                         <option value="">Pilih Jenis Konseling</option>
-                                        <option value="individu">Konseling Individu</option>
-                                        <option value="keluarga">Konseling Keluarga</option>
-                                        <option value="kelompok">Konseling Kelompok</option>
+                                        <option value="Konseling Individu">Konseling Individu</option>
+                                        <option value="Konseling Keluarga">Konseling Keluarga</option>
+                                        <option value="Konseling Kelompok">Konseling Kelompok</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -235,6 +235,32 @@
             </div>
         </div>
     </section>
+
+    <script>
+document.getElementById("formKonseling").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const params = new URLSearchParams();
+  for (const pair of formData) {
+    params.append(pair[0], pair[1]);
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycb....../exec", {
+    method: "POST",
+    body: params
+  })
+  .then(response => response.text())
+  .then(result => {
+    alert("Permintaan Anda telah dikirim.");
+    document.getElementById("formKonseling").reset();
+  })
+  .catch(error => {
+    alert("Terjadi kesalahan. Silakan coba lagi.");
+    console.error("Error:", error);
+  });
+});
+</script>
 
     <!-- FAQ -->
     <section class="py-5">
